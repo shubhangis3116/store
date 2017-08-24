@@ -4,7 +4,7 @@ global $conn;
 
  if(isset($_POST['submit']))
 {
-	$stmt=$conn->prepare("INSERT INTO products(name,price,image,category) VALUES(?,?,?,?,?)");
+	$stmt=$conn->prepare("INSERT INTO products(name,price,image,category) VALUES(?,?,?,?)");
 	$stmt->bind_param("ssss", $name,$price,$image,$category);
 
 	
