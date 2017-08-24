@@ -1,5 +1,6 @@
 
 <?php include('header.php'); ?>
+
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
 <?php include('sidebar.php'); ?>
 		
@@ -39,7 +40,7 @@
 				<div class="content-box-content">
 					
 					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
-						
+						<!--tables and forms separated -->
 						
 						
 						<table>
@@ -47,11 +48,11 @@
 							<thead>
 								<tr>
 								   <th><input class="check-all" type="checkbox" /></th>
-								   <th>Column 1</th>
-								   <th>Column 2</th>
-								   <th>Column 3</th>
-								   <th>Column 4</th>
-								   <th>Column 5</th>
+								   <th>Product ID</th>
+								   <th>Product Name</th>
+								   <th>Product Price</th>
+								   <th>Product Image</th>
+								   <th>Action</th>
 								</tr>
 								
 							</thead>
