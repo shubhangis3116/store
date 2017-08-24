@@ -36,12 +36,7 @@
 					
 					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
 						
-						<div class="notification attention png_bg">
-							<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-							<div>
-								This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross.
-							</div>
-						</div>
+						
 						
 						<table>
 							

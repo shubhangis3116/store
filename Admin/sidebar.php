@@ -24,10 +24,15 @@
 					<a href="#" class="nav-top-item"> <!-- Add the class "current" to current menu item -->
 					Products
 					</a>
+					<ul>
+						<li><a href="#">Create Products</a></li>
+						<li><a href="#">Manage Products</a></li> 
+					</ul>
 				</li>
 				
 				<li>
-					<a href="#" class="nav-top-item">
+				<!-- made category current -->
+					<a href="#" class="nav-top-item current">
 						Categories
 					</a>
 					
