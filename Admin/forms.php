@@ -46,7 +46,7 @@
 						<form action="#" method="post">
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-								
+								<!-- form changed -->
 								<p>
 									<label>Product ID</label>
 										<input class="text-input small-input" type="text" id="small-input" name="small-input" /> 
