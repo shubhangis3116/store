@@ -1,16 +1,6 @@
-<?php 
-/*changes */
-include('header.php');
-include('sidebar.php');
-include('footer.php');
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<body><div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
+<?php include('header.php'); ?>
 		
-		
+<?php include('sidebar.php'); ?>
 		
 		<div id="main-content"> <!-- Main Content Section with everything -->
 			
@@ -24,36 +14,6 @@ include('footer.php');
 			
 			<!-- Page Head -->
 			<h2>Welcome John</h2>
-			<p id="page-intro">What would you like to do?</p>
-			
-			<ul class="shortcut-buttons-set">
-				
-				<li><a class="shortcut-button" href="#"><span>
-					<img src="resources/images/icons/pencil_48.png" alt="icon" /><br />
-					Write an Article
-				</span></a></li>
-				
-				<li><a class="shortcut-button" href="#"><span>
-					<img src="resources/images/icons/paper_content_pencil_48.png" alt="icon" /><br />
-					Create a New Page
-				</span></a></li>
-				
-				<li><a class="shortcut-button" href="#"><span>
-					<img src="resources/images/icons/image_add_48.png" alt="icon" /><br />
-					Upload an Image
-				</span></a></li>
-				
-				<li><a class="shortcut-button" href="#"><span>
-					<img src="resources/images/icons/clock_48.png" alt="icon" /><br />
-					Add an Event
-				</span></a></li>
-				
-				<li><a class="shortcut-button" href="#messages" rel="modal"><span>
-					<img src="resources/images/icons/comment_48.png" alt="icon" /><br />
-					Open Modal
-				</span></a></li>
-				
-			</ul><!-- End .shortcut-buttons-set -->
 			
 			<div class="clear"></div> <!-- End .clear -->
 			
@@ -384,7 +344,4 @@ include('footer.php');
 			
 			<!-- End Notifications -->
 			
-			
-		</div> <!-- End #main-content -->
-	</div></body>
-</html>
+			<?php include('footer.php'); ?>
