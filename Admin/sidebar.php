@@ -21,22 +21,67 @@
 				</li>
 				
 				<li> 
-					<a href="#" class="nav-top-item"> <!-- Add the class "current" to current menu item -->
+
+					<?php if($page=='index.php'): ?>
+
+					<a href="#" class="nav-top-item "> <!-- Add the class "current" to current menu item -->
 					Products
 					</a>
 					<ul>
-						<li><a href="#">Create Products</a></li>
-						<li><a href="#">Manage Products</a></li> 
+						<li><a  href="forms.php" >Add A New Product</a></li>
+
+
+						<li><a  href="table.php">Manage Products</a></li> <!-- Add class "current" to sub menu items also -->
+						
 					</ul>
+
+				<?php endif; ?>
+
+				<?php if($page=='forms.php'): ?>
+
+					<a href="#" class="nav-top-item current"> <!-- Add the class "current" to current menu item -->
+					Products
+					</a>
+					<ul>
+						<li><a class="current" href="forms.php" >Add New Product</a></li>
+
+
+						<li><a   href="table.php">Manage Products</a></li> <!-- Add class "current" to sub menu items also -->
+						
+					</ul>
+
+				<?php endif; ?>
+
+
+				<?php if($page=='table.php'): ?>
+
+					<a href="#" class="nav-top-item current"> <!-- Add the class "current" to current menu item -->
+					Products
+					</a>
+					<ul>
+						<li><a  href="forms.php" >Add New Product</a></li>
+
+
+						<li><a  class="current" href="table.php">Manage Products</a></li> <!-- Add class "current" to sub menu items also -->
+						
+					</ul>
+
+				<?php endif; ?>
+
+
+
 				</li>
 				
 				<li>
-				<!-- made category current -->
-					<a href="#" class="nav-top-item current">
+					<a href="#" class="nav-top-item ">
 						Categories
 					</a>
-					
+					<ul>
+						<li><a class="current" href="#">Create </a></li>
+						<li><a class="current" href="#">Manage </a></li>
+					</ul>
 				</li>
+				
 				
 				
 			</ul> <!-- End #main-nav -->

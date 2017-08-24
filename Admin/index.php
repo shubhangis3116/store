@@ -1,5 +1,6 @@
+
 <?php include('header.php'); ?>
-		
+<?php $page=basename($_SERVER['PHP_SELF']); ?>
 <?php include('sidebar.php'); ?>
 		
 		<div id="main-content"> <!-- Main Content Section with everything -->
@@ -22,13 +23,16 @@
 				<div class="content-box-header">
 					
 					<h3>Content box</h3>
-					
+					<!--
 					<ul class="content-box-tabs">
-						<li><a href="#tab1" class="default-tab">Table</a></li> <!-- href must be unique and match the id of target div -->
-						<li><a href="#tab2">Forms</a></li>
+						<li><a href="#tab1" class="default-tab">Table</a></li> 
+						-->
+						<!-- href must be unique and match the id of target div -->
+					<!--	<li><a href="#tab2">Forms</a></li>
 					</ul>
-					
+				
 					<div class="clear"></div>
+					-->
 					
 				</div> <!-- End .content-box-header -->
 				
