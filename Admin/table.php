@@ -18,8 +18,51 @@ $product=array();
 				
 				$stmt->close();
 
+	$stmt=$conn->prepare("SELECT COUNT(*) FROM products");
+	$stmt->bind_result($num);
+	$limit=4;
+	$offset=0;
+	$stmt->execute();
+
+	while($stmt->fetch())
+	{
+		$total=$num;
+	}
+
+	//echo $total;
+
+	$totalpages=ceil($total/$limit);
+
+	if(isset($_GET['pageid']))
+	{
+		for($i=1;$i<=$totalpages;$i++)
+		{
+			if($i==$_GET['pageid'])
+			{
+				$offset=($i-1)*$limit;
+			}
+		}
+	}
+
+ $product=array();
+
+ $stmt=$conn->prepare("SELECT * FROM products LIMIT ?,?");
+ $stmt->bind_param("ii",$offset,$limit);
+ $stmt->execute();
+
+ $stmt->bind_result($id,$name,$price,$image,$category);
+ while($stmt->fetch())
+ {
+ 	array_push($product,array("id"=>$id,"name"=>$name,"price"=>$price,"image"=>$image,"dropdown"=>$category));
+ }
+
+ $stmt->close();
+ $conn->close();
+
 ?>
-		
+
+
+
 		<div id="main-content"> <!-- Main Content Section with everything -->
 			
 			<noscript> <!-- Show a notification if the user has disabled javascript -->
@@ -59,7 +102,7 @@ $product=array();
 						<!--tables and forms separated -->
 						
 						
-						<table>
+						<table id="pr">
 							
 							<thead>
 								<tr>
@@ -68,7 +111,7 @@ $product=array();
 								   <th>Product Name</th>
 								   <th>Product Price</th>
 								   <th>Product Image</th>
-								   <th>category</th>
+								   <th>Category</th>
 								   <th>Action</th>
 								</tr>
 								
@@ -87,12 +130,18 @@ $product=array();
 										</div>
 										
 										<div class="pagination">
-											<a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-											<a href="#" class="number" title="1">1</a>
-											<a href="#" class="number" title="2">2</a>
-											<a href="#" class="number current" title="3">3</a>
-											<a href="#" class="number" title="4">4</a>
-											<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
+										<a href="" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
+
+											<?php for($i=1;$i<=$totalpages;$i++)
+											{
+
+
+												echo '<a href="table.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
+
+
+											} ?>
+
+											
 										</div> <!-- End .pagination -->
 										<div class="clear"></div>
 									</td>
@@ -179,3 +228,4 @@ $product=array();
 			<div class="clear"></div>
 			
 			<?php include('footer.php'); ?>
+			

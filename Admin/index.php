@@ -1,6 +1,6 @@
 
 <?php include('header.php'); ?>
-<?php include('db.php'); ?>
+<?php include('manage.php'); ?>
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
 <?php include('sidebar.php'); ?>
 
@@ -91,9 +91,9 @@ $product=array();
 										
 										<div class="pagination">
 											<a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-											<a href="#" class="number" title="1">1</a>
+											<a href="#" class="number current" title="1">1</a>
 											<a href="#" class="number" title="2">2</a>
-											<a href="#" class="number current" title="3">3</a>
+											<a href="#" class="number" title="3">3</a>
 											<a href="#" class="number" title="4">4</a>
 											<a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
 										</div> <!-- End .pagination -->

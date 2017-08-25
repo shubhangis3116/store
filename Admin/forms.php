@@ -38,7 +38,7 @@ $conn->close();
 			</noscript>
 			
 			<!-- Page Head -->
-			<h2>Welcome John</h2>
+			<h2>Welcome User</h2>
 			
 			<div class="clear"></div> <!-- End .clear -->
 			

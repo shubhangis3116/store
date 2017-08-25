@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
 		if(isset($_FILES['image']))
 		{
 
-			if(move_uploaded_file($_FILES['image']['tmp_name'], $target.$_FILES['image']['name']))
+			if(move_uploaded_file($_FILES['image']['tmp_name'], "pictures/".$_FILES['image']['name']))
 			{
 				$proimage=$_FILES['image']['name'];
 			}
