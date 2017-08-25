@@ -1,12 +1,12 @@
-<?php
-$did=$_GET["delid"];
-include("config.php");
+	<?php
+	$did=$_GET["delid"];
+	include("config.php");
 
-$stmt = $conn->prepare("DELETE FROM products WHERE id=?");
+	$stmt = $conn->prepare("DELETE FROM products WHERE id=?");
 
-$stmt->bind_param("i",$did);
+	$stmt->bind_param("i",$did);
 
-$stmt->execute();
+	$stmt->execute();
 
-header("Location:table.php");
-?>
+	header("Location:table.php");
+	?>
