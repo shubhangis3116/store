@@ -363,9 +363,7 @@ ul.content-box-tabs li a.current {
 #main-content table th {
                 padding: 10px;
                 line-height: 1.3em;
-                filter:alpha(opacity=50);
-                 -moz-opacity:0.5;
-                  opacity: 0.5;
+                
                 }        
 				
 #main-content table tfoot td .bulk-actions {
