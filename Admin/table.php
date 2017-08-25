@@ -17,7 +17,7 @@ $product=array();
 			}
 				
 				$stmt->close();
-
+//pagination with  page no.//
 	$stmt=$conn->prepare("SELECT COUNT(*) FROM products");
 	$stmt->bind_result($num);
 	$limit=4;
