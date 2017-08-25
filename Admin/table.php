@@ -3,7 +3,7 @@
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
 <?php include('sidebar.php'); ?>
 
-<?php 
+<?php
 include('config.php');
 $product=array();
 
@@ -17,8 +17,6 @@ $product=array();
 			}
 				
 				$stmt->close();
-
-
 
 ?>
 		
@@ -114,8 +112,8 @@ $product=array();
 
 									<td>
 										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
+										 <a href="update.php?uid=<?php echo $value['id'];?>" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+										 <a href="delete.php?delid=<?php echo $value['id'];?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
 										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
 									</td>
 								</tr>
@@ -179,38 +177,5 @@ $product=array();
 				
 			</div> <!-- End .content-box -->
 			<div class="clear"></div>
-			
-			
-			<!-- Start Notifications -->
-			
-			<div class="notification attention png_bg">
-				<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-				<div>
-					Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. 
-				</div>
-			</div>
-			
-			<div class="notification information png_bg">
-				<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-				<div>
-					Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-				</div>
-			</div>
-			
-			<div class="notification success png_bg">
-				<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-				<div>
-					Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-				</div>
-			</div>
-			
-			<div class="notification error png_bg">
-				<a href="#" class="close"><img src="resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-				<div>
-					Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero.
-				</div>
-			</div>
-			
-			<!-- End Notifications -->
 			
 			<?php include('footer.php'); ?>

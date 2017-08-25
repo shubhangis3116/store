@@ -1,25 +1,22 @@
 
 <?php include('header.php'); ?>
-<?php include('db.php'); ?>
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
 <?php include('sidebar.php'); ?>
 
 <?php 
 include('config.php');
-$product=array();
+$prod=array();
 
 		 $stmt=$conn->prepare("SELECT * FROM products");
 		 $stmt->execute();
-		 $stmt->bind_result($id,$name,$price,$image,$category);
+		 $stmt->bind_result($id2,$name2,$price2,$image2,$category2);
 
 		 while($stmt->fetch())
 			{
-				array_push($product,array('id'=>$id, 'name'=>$name, 'price'=>$price, 'image'=>$image,'dropdown'=>$category));
+				array_push($prod,array('id'=>$id2, 'name'=>$name2, 'price'=>$price2, 'image'=>$image2,'dropdown'=>$category2));
 			}
 				
 				$stmt->close();
-
-
 
 ?>
 		
@@ -59,7 +56,7 @@ $product=array();
 				<div class="content-box-content">
 					
 					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
-						
+						<!--tables and forms separated -->
 						
 						
 						<table>
@@ -103,19 +100,20 @@ $product=array();
 							</tfoot>
 						 
 							<tbody>
-								<?php	
-							foreach($product as $key=> $value):?>
+						<?php	
+							foreach($prod as $key=> $val):?>
 								<tr>
 									<td><input type="checkbox" /></td>
-									<td><?php echo $value['id']; ?></td>
-									<td><?php echo $value['name']; ?></td>
-									<td><?php echo $value['price']; ?></td>
-									<td><img src="pictures/<?php echo $value['image']; ?>"></td>
-									<td><?php echo $value['dropdown']; ?></td>
+									<td><?php echo $val['id']; ?></td>
+									<td><?php echo $val['name']; ?></td>
+									<td><?php echo $val['price']; ?></td>
+									<td><img src="pictures/<?php echo $val['image']; ?>"></td>
+									<td><?php echo $val['dropdown']; ?></td>
+
 									<td>
 										<!-- Icons -->
 										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
+										 <a href="delete.php?delid=<?php echo $val['id']?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
 										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
 									</td>
 								</tr>
@@ -127,69 +125,57 @@ $product=array();
 						</table>
 						
 					</div> <!-- End #tab1 -->
-					
-					<div class="tab-content" id="tab2">
-					
-						<form action="#" method="post">
-							
-							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-								
-								<p>
-									<label>Small form input</label>
-										<input class="text-input small-input" type="text" id="small-input" name="small-input" /> <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
-										<br /><small>A small description of the field</small>
-								</p>
-								
-								<p>
-									<label>Medium form input</label>
-									<input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" /> <span class="input-notification error png_bg">Error message</span>
-								</p>
-								
-								<p>
-									<label>Large form input</label>
-									<input class="text-input large-input" type="text" id="large-input" name="large-input" />
-								</p>
-								
-								<p>
-									<label>Checkboxes</label>
-									<input type="checkbox" name="checkbox1" /> This is a checkbox <input type="checkbox" name="checkbox2" /> And this is another checkbox
-								</p>
-								
-								<p>
-									<label>Radio buttons</label>
-									<input type="radio" name="radio1" /> This is a radio button<br />
-									<input type="radio" name="radio2" /> This is another radio button
-								</p>
-								
-								<p>
-									<label>This is a drop down list</label>              
-									<select name="dropdown" class="small-input">
-										<option value="option1">Option 1</option>
-										<option value="option2">Option 2</option>
-										<option value="option3">Option 3</option>
-										<option value="option4">Option 4</option>
-									</select> 
-								</p>
-								
-								<p>
-									<label>Textarea with WYSIWYG</label>
-									<textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
-								</p>
-								
-								<p>
-									<input class="button" type="submit" value="Submit" />
-								</p>
-								
-							</fieldset>
-							
-							<div class="clear"></div><!-- End .clear -->
-							
-						</form>
-						
-					</div> <!-- End #tab2 -->        
+					   
 					
 				</div> <!-- End .content-box-content -->
 				
 			</div> <!-- End .content-box -->
-		
+			
+			<div class="content-box column-left">
+				
+				<div class="content-box-header">
+					
+					<h3>Content box left</h3>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab">
+					
+						<h4>Maecenas dignissim</h4>
+						<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo.
+						</p>
+						
+					</div> <!-- End #tab3 -->        
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			<div class="content-box column-right closed-box">
+				
+				<div class="content-box-header"> <!-- Add the class "closed" to the Content box header to have it closed by default -->
+					
+					<h3>Content box right</h3>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab">
+					
+						<h4>This box is closed by default</h4>
+						<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo.
+						</p>
+						
+					</div> <!-- End #tab3 -->        
+					
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			<div class="clear"></div>
+			
 			<?php include('footer.php'); ?>

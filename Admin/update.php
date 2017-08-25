@@ -3,6 +3,27 @@
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
 		
 <?php include('sidebar.php'); ?>
+<?php
+      $uid=$_GET['uid'];
+      include("config.php");
+      $toupdate=array();
+
+      $stmt = $conn->prepare("SELECT name,price,image,category FROM products WHERE id=?");
+      $stmt->bind_param("i",$uid);
+
+		$stmt->bind_result($name3,$price3,$image3,$category3);
+		$stmt->execute();
+		while($stmt->fetch())
+		{
+		 $name=$name3;
+		 $price=$price3;
+		 $category=$category3;
+		 $image=$image3;
+		 
+		}
+
+      ?>
+
 	
 		<div id="main-content"> <!-- Main Content Section with everything -->
 			
@@ -44,24 +65,24 @@
 						</div>
 
 					
-						<form action="db.php" method="POST" enctype="multipart/form-data">
+						<form action="updateform.php" method="POST" enctype="multipart/form-data">
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
 								<!-- form changed -->
 								
 								<p>
 									<label> Product Name </label>
-									<input class="text-input small-input" type="text" id="small-input" name="name" required/> 
+									<input class="text-input small-input" type="text" id="small-input" name="n" value="<?php echo $name; ?>" required/> 
 								</p>
 								
 								<p>
 									<label>Product Price</label>
-									<input class="text-input small-input" type="text" id="small-input" name="price" required/>
+									<input class="text-input small-input" type="text" id="small-input" name="p" value="<?php echo $price; ?>" required/>
 								</p>
 								
 								<p>
 									<label>Product Image</label>
-									<input type="file" name="image" class="text-input small-input" />
+									<input type="file" name="i" class="text-input small-input" value="<?php echo $image; ?>"/>
 									
 							
 								</p>
@@ -70,7 +91,7 @@
 								
 								<p>
 									<label>Select Category</label>              
-									<select name="dropdown" class="small-input" required>
+									<select name="cat" class="small-input" value="<?php echo $category; ?>" required>
 										<option> Select </option>
 										<option> Western </option>
 										<option> Indian </option>
