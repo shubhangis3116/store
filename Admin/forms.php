@@ -1,3 +1,26 @@
+<?php
+        include("config.php");
+if(isset($_GET['uid']))
+{
+    $uid=$_GET['uid'];
+    $stmt = $conn->prepare("SELECT * FROM products WHERE id=?");
+    $stmt->bind_param("i",$uid);
+
+	$stmt->bind_result($eid,$ename,$eprice,$eimage,$ecategory);
+	$stmt->execute();
+	while($stmt->fetch())
+	{
+	$proname=$ename;
+	$proprice=$eprice;
+	
+		 
+}
+
+$stmt->close();
+$conn->close();
+}
+?>
+
 <?php include('header.php'); ?>
 
 <?php $page=basename($_SERVER['PHP_SELF']); ?>
@@ -44,24 +67,29 @@
 						</div>
 
 					
-						<form action="db.php" method="POST" enctype="multipart/form-data">
+						<form action="manage.php" method="POST" enctype="multipart/form-data">
+						<?php if(isset($_GET['uid'])): ?>
+
+							<input type="hidden" name="edit" value="<?php echo $_GET['uid']; ?>" >
+					
+							<?php endif; ?>
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
 								<!-- form changed -->
 								
 								<p>
 									<label> Product Name </label>
-									<input class="text-input small-input" type="text" id="small-input" name="name" required/> 
+									<input class="text-input small-input" type="text" id="small-input" name="name" value="<?php if(isset($_GET['uid'])){echo $proname;} ?>" required/> 
 								</p>
 								
 								<p>
 									<label>Product Price</label>
-									<input class="text-input small-input" type="text" id="small-input" name="price" required/>
+									<input class="text-input small-input" type="text" id="small-input" name="price" value="<?php if(isset($_GET['uid'])){echo $proprice;} ?>" required/>
 								</p>
 								
 								<p>
 									<label>Product Image</label>
-									<input type="file" name="image" class="text-input small-input" />
+									<input type="file" name="image" class="text-input small-input">
 									
 							
 								</p>
@@ -80,10 +108,19 @@
 									</select> 
 								</p>
 								
-								
 								<p>
-									<input class="button" type="submit" value="Submit" name="submit" />
+									<?php if(!isset($_GET['uid'])): ?>
+									<input class="button" name="submit" type="submit" value="Add" />
+									<?php endif; ?>
+
+									<?php if(isset($_GET['uid'])): ?>
+									<input class="button" name="update" type="submit" value="Update Product" />
+									<?php endif; ?>
+
+
+
 								</p>
+								
 								
 							</fieldset>
 							

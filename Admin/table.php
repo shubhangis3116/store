@@ -112,7 +112,7 @@ $product=array();
 
 									<td>
 										<!-- Icons -->
-										 <a href="update.php?uid=<?php echo $value['id'];?>" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+										 <a href="forms.php?uid=<?php echo $value['id'];?>" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
 										 <a href="delete.php?delid=<?php echo $value['id'];?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
 										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
 									</td>
