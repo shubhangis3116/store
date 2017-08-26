@@ -510,13 +510,14 @@ form input[type="radio"] {
 
 .notification {
                 position: relative;
-                margin: 0 0 15px 0;
+                margin: 20px 0 15px 300px;
                 padding: 0;
                 border: 1px solid;
                 background-position: 10px 11px !important;
                 background-repeat: no-repeat !important;
                 font-size: 13px;
-                width: 99.8%;
+                width: 30%;
+                align-self: center;
                 }
                 
 

@@ -73,7 +73,8 @@
 							</li>
 							
 							<li>
-								<a href="#" class="nav-top-item ">
+								
+								<a href="#" class="nav-top-item">
 									Category
 								</a>
 								<ul>
@@ -83,11 +84,12 @@
 				
 						
 					</ul>
-							</li>
+			
+					
 							
 							
 							
-						</ul> <!-- End #main-nav -->
+						<!-- End #main-nav -->
 						
 						<div id="messages" style="display: none"> <!-- Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"  -->
 							
