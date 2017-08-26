@@ -30,6 +30,7 @@
 				
 				function getCategory()
 				{
+					include("config.php");
 					global $conn, $catarray, $stmt;
 					$stmt=$conn->prepare("SELECT * FROM category");
 					$stmt->bind_result($id,$name,$parentid);

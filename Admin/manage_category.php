@@ -2,7 +2,28 @@
 					<?php include('header.php'); ?>
 				<?php $page=basename($_SERVER['PHP_SELF']); ?>
 				<?php include('sidebar.php'); ?>
+				<?php include('config.php'); ?>
+				<?php
+				$catarray=array();
+				getCategory();
+				function getCategory()
+				{
+					include('config.php');
 
+
+					global $conn, $catarray, $stmt;
+					$stmt=$conn->prepare("SELECT * FROM category");
+					$stmt->bind_result($id,$name,$parentid);
+					$stmt->execute();
+					while($stmt->fetch())
+					{
+						array_push($catarray,array("id"=>$id,"name"=>$name,"parentid"=>$parentid));
+					}
+					$stmt->close();
+					$conn->close();
+					
+				}
+				?>
 				
 
 						<div id="main-content"> <!-- Main Content Section with everything -->
@@ -50,8 +71,9 @@
 												<tr>
 												   <th><input class="check-all" type="checkbox" /></th>
 												  
+												   <th>Category ID</th>
 												   <th>Category Name</th>
-												   <th>Parent Category</th>
+												   <th>Parent ID</th>
 												   <th>Action</th>
 												</tr>
 												
@@ -80,12 +102,15 @@
 											</tfoot>
 										 
 											<tbody>
+											<?php global $catarray; ?>
+											<?php foreach($catarray as $key => $value):?>
 										
 											
 												<tr>
-													<td><input type="checkbox" /></td>
-													<td></td>
-													<td></td>
+													<td><input type="checkbox"></td>
+													<td><?php echo $catarray[$key]['id']; ?> </td>
+													<td><?php echo $catarray[$key]['name']; ?></td>
+													<td><?php echo $catarray[$key]['parentid']; ?></td>
 													
 													
 
@@ -96,6 +121,7 @@
 														 
 													</td>
 												</tr>
+											<?php endforeach; ?>
 											
 											
 												
