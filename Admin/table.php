@@ -57,25 +57,7 @@
 
 			 $stmt->close();
 			 $conn->close();
-			 $products=array();
-	 /*
-				 $catgry=$_GET['catid'];
-
-				 $stmt=$conn->prepare("SELECT * FROM products WHERE category=?");
-				 $stmt->bind_param("s",$catgry);
-				 $stmt->execute();
-
-				 $stmt->bind_result($id,$name,$price,$image,$category);
-				 while($stmt->fetch())
-				 {
-				 	array_push($product,array("id"=>$id,"name"=>$name,"price"=>$price,"image"=>$image,"cat"=>$category));
-				 }
-
-				 $stmt->close();
-				 $conn->close();
-				 */
-
-
+			
 			?>
 
 
@@ -185,7 +167,7 @@
 												</td>
 											</tr>
 										<?php endforeach; ?>
-									
+										
 											
 											
 										</tbody>
