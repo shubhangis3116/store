@@ -49,7 +49,7 @@
 											<thead>
 												<tr>
 												   <th><input class="check-all" type="checkbox" /></th>
-												   <th>Category ID</th>
+												  
 												   <th>Category Name</th>
 												   <th>Parent Category</th>
 												   <th>Action</th>
@@ -86,9 +86,8 @@
 													<td><input type="checkbox" /></td>
 													<td></td>
 													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
+													
+													
 
 													<td>
 														<!-- Icons -->
