@@ -3,64 +3,7 @@
 				<?php $page=basename($_SERVER['PHP_SELF']); ?>
 				<?php include('sidebar.php'); ?>
 
-				<?php
-				include('config.php');
-				$product=array();
-
-						 $stmt=$conn->prepare("SELECT * FROM products");
-						 $stmt->execute();
-						 $stmt->bind_result($id,$name,$price,$image,$category);
-
-						 while($stmt->fetch())
-							{
-								array_push($product,array('id'=>$id, 'name'=>$name, 'price'=>$price, 'image'=>$image,'dropdown'=>$category));
-							}
-								
-								$stmt->close();
-				//pagination with  page no.//
-					$stmt=$conn->prepare("SELECT COUNT(*) FROM products");
-					$stmt->bind_result($num);
-					$limit=4;
-					$offset=0;
-					$stmt->execute();
-
-					while($stmt->fetch())
-					{
-						$total=$num;
-					}
-
-					
-					$totalpages=ceil($total/$limit);
-
-					if(isset($_GET['pageid']))
-					{
-						for($i=1;$i<=$totalpages;$i++)
-						{
-							if($i==$_GET['pageid'])
-							{
-								$offset=($i-1)*$limit;
-							}
-						}
-					}
-
-				 $product=array();
-
-				 $stmt=$conn->prepare("SELECT * FROM products LIMIT ?,?");
-				 $stmt->bind_param("ii",$offset,$limit);
-				 $stmt->execute();
-
-				 $stmt->bind_result($id,$name,$price,$image,$category);
-				 while($stmt->fetch())
-				 {
-				 	array_push($product,array("id"=>$id,"name"=>$name,"price"=>$price,"image"=>$image,"dropdown"=>$category));
-				 }
-
-				 $stmt->close();
-				 $conn->close();
 				
-				?>
-
-
 
 						<div id="main-content"> <!-- Main Content Section with everything -->
 							
@@ -106,11 +49,9 @@
 											<thead>
 												<tr>
 												   <th><input class="check-all" type="checkbox" /></th>
-												   <th>Product ID</th>
-												   <th>Product Name</th>
-												   <th>Product Price</th>
-												   <th>Product Image</th>
-												   <th>Category</th>
+												   <th>Category ID</th>
+												   <th>Category Name</th>
+												   <th>Parent Category</th>
 												   <th>Action</th>
 												</tr>
 												
@@ -131,15 +72,6 @@
 														<div class="pagination">
 														<a href="" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
 
-															<?php for($i=1;$i<=$totalpages;$i++)
-															{
-
-
-																echo '<a href="table.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
-
-
-															} ?>
-
 															
 														</div> <!-- End .pagination -->
 														<div class="clear"></div>
@@ -149,24 +81,23 @@
 										 
 											<tbody>
 										
-											<?php
-											foreach($product as $key=> $value):?>
+											
 												<tr>
 													<td><input type="checkbox" /></td>
-													<td><?php echo $value['id']; ?></td>
-													<td><?php echo $value['name']; ?></td>
-													<td><?php echo $value['price']; ?></td>
-													<td><img src="pictures/<?php echo $value['image']; ?>"></td>
-													<td><?php echo $value['dropdown']; ?></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
 
 													<td>
 														<!-- Icons -->
-														 <a href="forms.php?uid=<?php echo $value['id'];?>" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-														 <a href="delete.php?delid=<?php echo $value['id'];?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
+														 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+														 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
 														 
 													</td>
 												</tr>
-											<?php endforeach; ?>
+											
 											
 												
 												

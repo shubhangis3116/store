@@ -99,7 +99,7 @@
 									<p>
 										<label>Select Category</label>              
 										<select name="dropdown" class="small-input" required>
-											<option> Select </option>
+											<option> ------ </option>
 											<option> Western </option>
 											<option> Indian </option>
 											<option> Indo-Western</option>

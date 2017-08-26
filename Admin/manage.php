@@ -51,7 +51,22 @@
 		session_destroy();
 
 	}
-	$conn->close();
+	
 	header("location:forms.php");
+
+	if(isset($_POST['add']))
+	{
+		$cname=$_POST['cname'];
+		$parentid=$id;
+		
+
+		$stmt=$conn->prepare("INSERT INTO category (name,parent_id) VALUES(?,?)");
+		$stmt->bind_param("ssss",$cname,$parentid);
+
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			//
+	}
 
 	?>
