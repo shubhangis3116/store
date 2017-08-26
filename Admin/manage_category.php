@@ -121,7 +121,7 @@
 
 													<td>
 														<!-- Icons -->
-														 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
+														
 														 <a href="del_category.php?deid=<?php echo $catarray[$key]['id'];?>" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
 														 
 													</td>

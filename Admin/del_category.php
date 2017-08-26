@@ -1,4 +1,5 @@
 <?php
+/*category module-added delete functionality */
 $dele=$_GET["deid"];
 	include("config.php");
 
