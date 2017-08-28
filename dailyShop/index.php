@@ -1,3 +1,4 @@
+<!-- seperated  header" -->
 <?php include('header.php'); ?>
   <!-- menu -->
   <section id="menu">
