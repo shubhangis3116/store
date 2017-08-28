@@ -1,6 +1,7 @@
 <!-- seperated  header" -->
 <?php include('header.php'); ?>
 <?php include('config.php'); 
+/* product module-all products are added by database */
 $man=array();
 $cat="man";
 $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
