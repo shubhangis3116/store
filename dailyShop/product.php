@@ -1,9 +1,9 @@
   <?php include('header.php'); ?>
   <?php include('config.php'); ?>
     <?php
-    /*product module-pagination completed */
+    /*product module-pagination complete */
               include('config.php');
-              global $conn,$all, $stmt;
+              global $conn,$allproduct, $stmt;
               $stmt=$conn->prepare("SELECT COUNT(*) FROM newproductlist");
                 $stmt->bind_result($num);
                 $limit=9;
@@ -41,7 +41,6 @@
                }
 
                $stmt->close();
-               $conn->close();
 
     ?>
     <!-- menu -->
@@ -366,9 +365,10 @@
               <div class="aa-sidebar-widget">
                 <h3>Category</h3>
                 <ul class="aa-catg-nav">
-                  <li><a href="#">Men</a></li>
+
+                  <li><a href="product.php">Men</a></li>
                   <li><a href="">Women</a></li>
-                  <li><a href="">Kids</a></li>
+                 
                   <li><a href="">Electornics</a></li>
                   <li><a href="">Sports</a></li>
                 </ul>

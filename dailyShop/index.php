@@ -91,7 +91,7 @@
                   </li>
                   <li><a href="#">Women <span class="caret"></span></a>
                     <ul class="dropdown-menu">  
-                      <li><a href="#">Kurta & Kurti</a></li>                                                                
+                      <li><a href="#">Kurta and Kurti</a></li>                                                                
                       <li><a href="#">Trousers</a></li>              
                       <li><a href="#">Casual</a></li>
                       <li><a href="#">Sports</a></li>
@@ -122,7 +122,7 @@
                               <li><a href="#">Hand Bags</a></li>
                               <li><a href="#">Single Bags</a></li>
                               <li><a href="#">Travel Bags</a></li>
-                              <li><a href="#">Wallets & Belts</a></li>                        
+                              <li><a href="#">Wallets and Belts</a></li>                        
                               <li><a href="#">Sunglases</a></li>
                               <li><a href="#">Nail</a></li>                       
                             </ul>
@@ -183,82 +183,7 @@
         </div>
       </section>
       <!-- / menu -->
-      <!-- Start slider -->
-      <section id="aa-slider">
-        <div class="aa-slider-area">
-          <div id="sequence" class="seq">
-            <div class="seq-screen">
-              <ul class="seq-canvas">
-                <!-- single slide item -->
-                <li>
-                  <div class="seq-model">
-                    <img data-seq src="img/slider/1.jpg" alt="Men slide img" />
-                  </div>
-                  <div class="seq-title">
-                   <span data-seq>Save Up to 75% Off</span>                
-                    <h2 data-seq>Men Collection</h2>                
-                    <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                    <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-                  </div>
-                </li>
-                <!-- single slide item -->
-                <li>
-                  <div class="seq-model">
-                    <img data-seq src="img/slider/2.jpg" alt="Wristwatch slide img" />
-                  </div>
-                  <div class="seq-title">
-                    <span data-seq>Save Up to 40% Off</span>                
-                    <h2 data-seq>Wristwatch Collection</h2>                
-                    <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                    <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-                  </div>
-                </li>
-                <!-- single slide item -->
-                <li>
-                  <div class="seq-model">
-                    <img data-seq src="img/slider/3.jpg" alt="Women Jeans slide img" />
-                  </div>
-                  <div class="seq-title">
-                    <span data-seq>Save Up to 75% Off</span>                
-                    <h2 data-seq>Jeans Collection</h2>                
-                    <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                    <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-                  </div>
-                </li>
-                <!-- single slide item -->           
-                <li>
-                  <div class="seq-model">
-                    <img data-seq src="img/slider/4.jpg" alt="Shoes slide img" />
-                  </div>
-                  <div class="seq-title">
-                    <span data-seq>Save Up to 75% Off</span>                
-                    <h2 data-seq>Exclusive Shoes</h2>                
-                    <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                    <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-                  </div>
-                </li>
-                <!-- single slide item -->  
-                 <li>
-                  <div class="seq-model">
-                    <img data-seq src="img/slider/5.jpg" alt="Male Female slide img" />
-                  </div>
-                  <div class="seq-title">
-                    <span data-seq>Save Up to 50% Off</span>                
-                    <h2 data-seq>Best Collection</h2>                
-                    <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                    <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-                  </div>
-                </li>                   
-              </ul>
-            </div>
-            <!-- slider navigation btn -->
-            <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-              <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-              <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-            </fieldset>
-          </div>
-        </div>
-      </section>
+     <?php include('sidebar.php'); ?>
       <!-- / slider -->
       <!-- Start Promo section -->
       <section id="aa-promo">
@@ -437,7 +362,7 @@
                             <li>
                               <figure>
                                 <a class="aa-product-img" href="#"><img src="img/electronics/<?php echo $value1['image']; ?>" alt="polo shirt img"></a>
-                                <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                                <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                 <figcaption>
                                   <h4 class="aa-product-title"><a href="#"><?php echo $value1['name']; ?></a></h4>
                                   <span class="aa-product-price"><?php echo $value1['newprice']; ?></span><span class="aa-product-price"><del><?php echo $value1['oldprice']; ?></del></span>
