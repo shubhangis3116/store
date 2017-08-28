@@ -1,3 +1,4 @@
+<!--seperated footer-->
  <footer id="aa-footer">
     <!-- footer bottom -->
     <div class="aa-footer-top">
