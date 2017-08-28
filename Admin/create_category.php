@@ -88,44 +88,7 @@
 						$conn->close();
 					}
 
-					$stmt=$conn->prepare("SELECT COUNT(*) FROM category");
-					$stmt->bind_result($num1);
-					$limits=4;
-					$offsets=0;
-					$stmt->execute();
-
-					while($stmt->fetch())
-					{
-						$totl=$num1;
-					}
-
 					
-					$totalpage=ceil($totl/$limits);
-
-					if(isset($_GET['pageid']))
-					{
-						for($i=1;$i<=$totalpage;$i++)
-						{
-							if($i==$_GET['pageid'])
-							{
-								$offsets=($i-1)*$limits;
-							}
-						}
-					}
- $product=array();
-
-				 $stmt=$conn->prepare("SELECT * FROM category LIMIT ?,?");
-				 $stmt->bind_param("ii",$offsets,$limits);
-				 $stmt->execute();
-
-				 $stmt->bind_result($id,$name,$parentid);
-				 while($stmt->fetch())
-				 {
-				 	array_push($catarray,array("id"=>$id,"name"=>$name, "parentid"=>$parentid));
-				 }
-
-				 $stmt->close();
-				 $conn->close();
 							?>
 								
 									<div id="main-content"> <!-- Main Content Section with everything -->
@@ -188,7 +151,7 @@
 																	foreach($catarray as $key=> $value): ?>
 
 
-																	<option value="<?php echo $catarray[$key]['name'];?>" data-optionid="<?php echo $catarray[$key]['id'];?>" data-oparentid="<?php echo $catarray[$key]['parentid'];?>" ><?php echo $catarray[$key]['name'];?></option>
+																	<option value="<?php echo $catarray[$key]['name'];?>" data-optionid="<?php echo $catarray[$key]['id'];?>" data-oparentid="<?php echo $catarray[$key]['parentid'];?>"><?php echo $catarray[$key]['name'];?></option>
 																<?php endforeach;?>
 																	
 																	
