@@ -107,6 +107,7 @@
                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                   <li class="hidden-xs"><a href="category.php">Add Category</a></li>
                 </ul>
               </div>
             </div>
