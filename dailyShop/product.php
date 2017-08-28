@@ -1,6 +1,7 @@
   <?php include('header.php'); ?>
   <?php include('config.php'); ?>
     <?php
+    /*product module-pagination completed */
               include('config.php');
               global $conn,$all, $stmt;
               $stmt=$conn->prepare("SELECT COUNT(*) FROM newproductlist");
