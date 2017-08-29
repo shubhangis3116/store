@@ -17,10 +17,16 @@ $stmt->bind_result($new);
               <div class="aa-sidebar-widget">
                 <h3>Category</h3>
                 <ul class="aa-catg-nav">
+                <form action="filterbycategory.php" method="POST">
                 <?php foreach($catarray as $key => $value): ?>
 
-                  <li><a href="filterbycategory.php?cat=<?php echo $value['name']; ?>&pageid=1"><?php echo $value['name']; ?></a></li>
+                  <li><a href=""><?php echo $value['name']; ?></a>
+                  <input type="checkbox" name="catarray[]" value="<?php echo $value['name']?>">
+                  </li>
+
                   <?php endforeach; ?>
+                   <button class="aa-filter-btn" type="submit">Filter</button>
+                   </form>
                 </ul>
               </div>
               <!-- single sidebar -->
