@@ -2,17 +2,17 @@
 
 	session_start();
 	include("config.php");
+	include("functions.php");
 
 	if(isset($_POST['submit']))
 	{
-
+		$product=array();
 		$proname=$_POST['name'];
 		$proprice=$_POST['price'];
 		$procat=$_POST['dropdown'];
 
 
-		$stmt=$conn->prepare("INSERT INTO products (name,price,image,category) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss",$proname,$proprice,$proimage,$procat);
+		
 
 		
 			if(isset($_FILES['image']))
@@ -24,16 +24,20 @@
 				}
 			}
 			
-
+				$product = array('name'=>$proname,'price'=>$proprice,'dropdown'=>$procat,'image'=>$proimage);
 			
-			
-				
+			$product_id = addProduct($product);
 
-			$stmt->execute();
-			$stmt->close();
+			header("location:forms.php");
+
+
+	
+
 			//
 
 	}
+
+	/*
 	else if(isset($_POST['update']))
 	{	
 
@@ -55,5 +59,5 @@
 	header("location:forms.php");
 
 	
-
+*/
 	?>
