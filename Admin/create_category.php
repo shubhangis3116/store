@@ -1,4 +1,4 @@
-							<?php 
+<?php 
 							include('config.php');?>
 							<?php include('functions.php');?>
 							
@@ -10,7 +10,6 @@
 							{
 								if($_POST['newdropdown']=="")
 								{
-
 									echo "Please Select A Category";
 									$cname=$_POST['cname'];
 									$cparent=0;
@@ -44,10 +43,7 @@
 								
 							}
 							*/
-
-
 							
-
 					function childCategory($cselected,$cnamee)
 					{
 						include("config.php");
@@ -73,7 +69,6 @@
 						$stmt->close();
 						$conn->close();
 					}
-
 					
 							?>
 							<?php include('header.php'); ?>

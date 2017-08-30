@@ -1,4 +1,4 @@
-							<?php include('config.php'); ?>
+<?php include('config.php'); ?>
 							<?php include('functions.php'); ?>
 							<?php include('header.php'); ?>
 						<?php $page=basename($_SERVER['PHP_SELF']); ?>
@@ -6,9 +6,8 @@
 						
 						<?php
 						
-						$catarray=getCategory();
+						getCategory();
 						
-
 			
 			
 						?>
@@ -84,11 +83,7 @@
 																<?php 
 																/*for($i=1;$i<=$totalpage;$i++)
 																	{
-
-
 																		echo '<a href="manage_category.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
-
-
 																	}*/ ?>
 
 																	

@@ -106,10 +106,10 @@
 			return $product_id;
 
 	}
-	function ParentCategory($cname,$cparent)
+	/*categories added to database */
+		function ParentCategory($cname,$cparent)
 					{
 						global $conn,$stmt;
-
 						$stmt=$conn->prepare("INSERT INTO category (name,parent_id) VALUES(?,?)");
 						$stmt->bind_param("si",$cname,$cparent);
 						$stmt->execute();
@@ -123,6 +123,7 @@
 	
 	function getCategory()
 	{
+		global $catarray;
 		$catarray=array();
 		include("config.php");
 		global $conn, $catarray, $stmt;
@@ -135,6 +136,11 @@
 		}
 		
 	}
+	
+		
+
+
+		
 	
 
 

@@ -1,9 +1,6 @@
-	<?php
-
-	session_start();
-	include("config.php");
-	include("functions.php");
-
+	<?php include("config.php"); ?>
+	<?php include("functions.php"); ?>
+<?php
 	if(isset($_POST['submit']))
 	{
 		$products=array();

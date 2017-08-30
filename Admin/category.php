@@ -9,7 +9,7 @@
 		 /* categories added */
 					 $catgry=$_GET['catid'];
 
-					 $stmt=$conn->prepare("SELECT * FROM products WHERE category=?");
+					 $stmt=$conn->prepare("SELECT * FROM newproductlist WHERE category=?");
 					 $stmt->bind_param("s",$catgry);
 					 $stmt->execute();
 
