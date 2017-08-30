@@ -1,72 +1,13 @@
-
+							<?php include('config.php'); ?>
+							<?php include('functions.php'); ?>
 							<?php include('header.php'); ?>
 						<?php $page=basename($_SERVER['PHP_SELF']); ?>
 						<?php include('sidebar.php'); ?>
-						<?php include('config.php'); ?>
+						
 						<?php
-						$catarray=array();
-						getCategory();
-						function getCategory()
-						{
-							include('config.php');
-
-
-							global $conn, $catarray, $stmt;
-							$stmt=$conn->prepare("SELECT * FROM category");
-							$stmt->bind_result($id,$name,$parentid);
-							$stmt->execute();
-							while($stmt->fetch())
-							{
-								array_push($catarray,array("id"=>$id,"name"=>$name,"parentid"=>$parentid));
-							}
-							$stmt->close();
-							$conn->close();
-							
-						}
-						?>
-						<?php
-						include('config.php');
-						global $conn,$catarray, $stmt;
-						$stmt=$conn->prepare("SELECT COUNT(*) FROM category");
-							$stmt->bind_result($num1);
-							$limits=4;
-							$offsets=0;
-							$stmt->execute();
-
-							while($stmt->fetch())
-							{
-								$totl=$num1;
-							}
-
-							
-							$totalpage=ceil($totl/$limits);
-
-							if(isset($_GET['pageid']))
-							{
-								for($i=1;$i<=$totalpage;$i++)
-								{
-									if($i==$_GET['pageid'])
-									{
-										$offsets=($i-1)*$limits;
-									}
-								}
-							}
-		 $catarray=array();
-
-						 $stmt=$conn->prepare("SELECT * FROM category LIMIT ?,?");
-						 $stmt->bind_param("ii",$offsets,$limits);
-						 $stmt->execute();
-
-						 $stmt->bind_result($id,$name,$parentid);
-						 while($stmt->fetch())
-						 {
-						 	array_push($catarray,array("id"=>$id,"name"=>$name, "parentid"=>$parentid));
-						 }
-
-						 $stmt->close();
-						 $conn->close();
-
-			
+						
+						$catarray=getCategory();
+						
 
 			
 			
@@ -140,14 +81,15 @@
 																
 																<div class="pagination">
 																<a href="" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-																<?php for($i=1;$i<=$totalpage;$i++)
+																<?php 
+																/*for($i=1;$i<=$totalpage;$i++)
 																	{
 
 
 																		echo '<a href="manage_category.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
 
 
-																	} ?>
+																	}*/ ?>
 
 																	
 																</div> <!-- End .pagination -->

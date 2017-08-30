@@ -1,9 +1,9 @@
 	<?php
 	        include("config.php");
-	if(isset($_GET['uid']))
-	{
+	
 	    $uid=$_GET['uid'];
-	    $stmt = $conn->prepare("SELECT * FROM products WHERE id=?");
+	    $toupdate=array();
+	    $stmt = $conn->prepare("SELECT * FROM newproductlist WHERE id=?");
 	    $stmt->bind_param("i",$uid);
 
 		$stmt->bind_result($eid,$ename,$eprice,$eimage,$ecategory);
@@ -13,12 +13,13 @@
 		$proname=$ename;
 		$proprice=$eprice;
 		
+		
 			 
 	}
 
 	$stmt->close();
 	$conn->close();
-	}
+	
 	?>
 
 	<?php include('header.php'); ?>

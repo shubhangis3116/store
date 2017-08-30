@@ -1,11 +1,9 @@
-							<?php include('header.php'); ?>
-
-							<?php $page=basename($_SERVER['PHP_SELF']); ?>
-									
-							<?php include('sidebar.php'); ?>
 							<?php 
-							include('config.php');
+							include('config.php');?>
+							<?php include('functions.php');?>
 							
+							
+							<?php
 							$catarray=array();
 							getCategory();
 							if(isset($_POST['add']))
@@ -31,7 +29,7 @@
 								}
 							}
 							/* category module-added category through database */
-							
+						/*
 							function getCategory()
 							{
 								include("config.php");
@@ -45,22 +43,10 @@
 								}
 								
 							}
+							*/
 
 
-							function ParentCategory($cname,$cparent)
-					{
-						global $conn,$stmt;
-
-						$stmt=$conn->prepare("INSERT INTO category (name,parent_id) VALUES(?,?)");
-						$stmt->bind_param("si",$cname,$cparent);
-						$stmt->execute();
-						if(false==$stmt)
-						{
-							echo "Error!";
-						}
-						$stmt->close();
-						$conn->close();
-					}
+							
 
 					function childCategory($cselected,$cnamee)
 					{
@@ -90,6 +76,11 @@
 
 					
 							?>
+							<?php include('header.php'); ?>
+
+							<?php $page=basename($_SERVER['PHP_SELF']); ?>
+									
+							<?php include('sidebar.php'); ?>
 								
 									<div id="main-content"> <!-- Main Content Section with everything -->
 										
