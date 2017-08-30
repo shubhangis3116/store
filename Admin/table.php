@@ -1,22 +1,20 @@
+					<?php include('config.php'); ?>
+					<?php include('functions.php'); ?>
 
-					<?php include('header.php'); ?>
+				<?php 
+						
+						$products=getProducts();
+				?>
 				<?php $page=basename($_SERVER['PHP_SELF']); ?>
+
+				<?php include('header.php'); ?>
 				<?php include('sidebar.php'); ?>
 
-				<?php
-				include('config.php');
-				$product=array();
 
-						 $stmt=$conn->prepare("SELECT * FROM products");
-						 $stmt->execute();
-						 $stmt->bind_result($id,$name,$price,$image,$category);
-
-						 while($stmt->fetch())
-							{
-								array_push($product,array('id'=>$id, 'name'=>$name, 'price'=>$price, 'image'=>$image,'dropdown'=>$category));
-							}
-								
-								$stmt->close();
+				
+				<!--
+			
+				
 				//pagination with  page no.//
 					$stmt=$conn->prepare("SELECT COUNT(*) FROM products");
 					$stmt->bind_result($num);
@@ -57,8 +55,9 @@
 
 				 $stmt->close();
 				 $conn->close();
+				 -->
 				
-				?>
+				
 
 
 
@@ -130,15 +129,19 @@
 														
 														<div class="pagination">
 														<a href="" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
+														
 
-															<?php for($i=1;$i<=$totalpages;$i++)
+															<?php
+															/*
+															 for($i=1;$i<=$totalpages;$i++)
 															{
 
 
 																echo '<a href="table.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
 
 
-															} ?>
+															} */ ?>
+															
 
 															
 														</div> <!-- End .pagination -->
@@ -150,7 +153,8 @@
 											<tbody>
 										
 											<?php
-											foreach($product as $key=> $value):?>
+											foreach($products as $key => $value): 
+																									?>
 												<tr>
 													<td><input type="checkbox" /></td>
 													<td><?php echo $value['id']; ?></td>

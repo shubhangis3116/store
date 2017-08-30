@@ -25,13 +25,13 @@
            $display=array();
                    if(isset($_POST["cat"])):
                     foreach ($_POST['cat'] as $value):
-                   $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
+                   $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
                    $stmt->bind_param("s", $value);
-                   $stmt->bind_result($name,$newprice,$oldprice,$image);
+                   $stmt->bind_result($name,$price,$image);
                    $stmt->execute();
                    while($stmt->fetch())
                    {
-                    array_push($display,array("name"=>$name, "newprice"=>$newprice,"oldprice"=>$oldprice,"image"=>$image));
+                    array_push($display,array("name"=>$name,"price"=>$price,"image"=>$image));
                    }
 
                    $stmt->close();
@@ -232,7 +232,7 @@
                           <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                           <figcaption>
                             <h4 class="aa-product-title"><a href="#"><?php echo $value['name']; ?></a></h4>
-                            <span class="aa-product-price"><?php echo $value['newprice']; ?></span><span class="aa-product-price"><del><?php echo $value['oldprice'];?></del></span>
+                            <span class="aa-product-price"><?php echo $value['price']; ?></span>
                             <p class="aa-product-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam accusamus facere iusto, autem soluta amet sapiente ratione inventore nesciunt a, maxime quasi consectetur, rerum illum.</p>
                           </figcaption>
                         </figure>                         

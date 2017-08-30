@@ -4,7 +4,7 @@
 	function addProduct($product){
 			global $conn;
 			
-			$stmt = $conn->prepare("INSERT INTO products (name , price , category, image) VALUES (?,?,?,?)");
+			$stmt = $conn->prepare("INSERT INTO newproductlist (name , price , image, category) VALUES (?,?,?,?)");
 			
 			if ( false === $stmt ) {
 				return false;
@@ -14,10 +14,10 @@
 			if ( false === $params) {
 				return false;
 			}
-			$proname = isset($product['name'])?$product['name']:'';
-			$proprice = isset($product['price'])?$product['price']:'';
-			$proimage = isset($product['image'])?$product['image']:'';
-			$procat = isset($product['dropdown'])?$product['dropdown']:'';
+			$proname = isset($products['name'])?$products['name']:'';
+			$proprice = isset($products['price'])?$products['price']:'';
+			$proimage = isset($products['image'])?$products['image']:'';
+			$procat = isset($products['dropdown'])?$products['dropdown']:'';
 			
 			$execute = $stmt->execute();
 			if ( false === $execute) {
@@ -27,3 +27,29 @@
 			$stmt->close();
 			return $product_id;
 		}
+
+	function getProducts(){
+		
+		global $conn;
+		$stmt = $conn->prepare("SELECT * FROM newproductlist");
+		if(false===$stmt)
+		{
+			return false;
+		}
+		
+		
+		$stmt->bind_result($pid,$pname,$pprice,$pimage,$pcat);
+		$products=array();
+		
+		$execute=$stmt->execute();
+		
+		if ( false === $execute) {
+			return false;
+		}
+		while($stmt->fetch()){
+			$products[] = array("id"=>$pid,"name"=>$pname, "price"=>$pprice,"image"=>$pimage,"dropdown"=>$pcat);
+		}
+		
+		return $products;
+		
+	}

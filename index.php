@@ -4,49 +4,49 @@
     /*product module-products aree added through database */
     $man=array();
     $cat="man";
-    $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
+    $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
     $stmt->bind_param("s",$cat);
-    $stmt->bind_result($m_name,$m_newprice,$m_oldprice,$m_image);
+    $stmt->bind_result($m_name,$m_price,$m_image);
     $stmt->execute();
     while($stmt->fetch())
     {
-      array_push($man,array("name"=>$m_name,"newprice"=>$m_newprice,"oldprice"=>$m_oldprice,"image"=>$m_image));
+      array_push($man,array("name"=>$m_name,"price"=>$m_price,"image"=>$m_image));
     }
 
 
     $woman=array();
     $cat="woman";
-    $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
+    $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
     $stmt->bind_param("s",$cat);
-    $stmt->bind_result($w_name,$w_newprice,$w_oldprice,$w_image);
+    $stmt->bind_result($w_name,$w_price,$w_image);
     $stmt->execute();
     while($stmt->fetch())
     {
-      array_push($woman,array("name"=>$w_name,"newprice"=>$w_newprice,"oldprice"=>$w_oldprice,"image"=>$w_image));
+      array_push($woman,array("name"=>$w_name, "price"=>$w_price,"image"=>$w_image));
     }
       
 
     $sports=array();
     $cat="sports";
-    $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
+    $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
     $stmt->bind_param("s",$cat);
-    $stmt->bind_result($s_name,$s_newprice,$s_oldprice,$s_image);
+    $stmt->bind_result($s_name,$s_price,$s_image);
     $stmt->execute();
     while($stmt->fetch())
     {
-      array_push($sports,array("name"=>$s_name,"newprice"=>$s_newprice,"oldprice"=>$s_oldprice,"image"=>$s_image));
+      array_push($sports,array("name"=>$s_name,"price"=>$s_price,"image"=>$s_image));
     }
       
 
     $electronics=array();
     $cat="electronics";
-    $stmt=$conn->prepare("SELECT name,newprice,oldprice,image FROM newproductlist WHERE category=?");
+    $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
     $stmt->bind_param("s",$cat);
-    $stmt->bind_result($e_name,$e_newprice,$e_oldprice,$e_image);
+    $stmt->bind_result($e_name,$e_price,$e_image);
     $stmt->execute();
     while($stmt->fetch())
     {
-      array_push($electronics,array("name"=>$e_name,"newprice"=>$e_newprice,"oldprice"=>$e_oldprice,"image"=>$e_image));
+      array_push($electronics,array("name"=>$e_name,"price"=>$e_price,"image"=>$e_image));
     }
     $stmt->close();
     $conn->close();
@@ -355,7 +355,7 @@
                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                   <figcaption>
                                   <h4 class="aa-product-title"><a href="#"><?php echo $value['name']; ?></a></h4>
-                                  <span class="aa-product-price"><?php echo $value['newprice']; ?></span><span class="aa-product-price"><del><?php echo $value['oldprice']; ?></del></span>
+                                  <span class="aa-product-price"><?php echo $value['price']; ?></span>
                                 </figcaption>
                               </figure>                        
                               <div class="aa-product-hvr-content">
@@ -383,7 +383,7 @@
                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                 <figcaption>
                                   <h4 class="aa-product-title"><a href="#"><?php echo $val['name']; ?></a></h4>
-                                  <span class="aa-product-price"><?php echo $val['newprice']; ?></span><span class="aa-product-price"><del><?php echo $val['oldprice']; ?></del></span>
+                                  <span class="aa-product-price"><?php echo $val['price']; ?></span>
                                 </figcaption>
                               </figure>                         
                               <div class="aa-product-hvr-content">
@@ -411,7 +411,7 @@
                                 <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                 <figcaption>
                                   <h4 class="aa-product-title"><a href="#"><?php echo $v['name']; ?></a></h4>
-                                  <span class="aa-product-price"><?php echo $v['newprice']; ?></span><span class="aa-product-price"><del><?php echo $v['oldprice']; ?></del></span>
+                                  <span class="aa-product-price"><?php echo $v['price']; ?></span>
                                 </figcaption>
                               </figure>                         
                               <div class="aa-product-hvr-content">
@@ -440,7 +440,7 @@
                                 <a class="aa-add-card-btn" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                                 <figcaption>
                                   <h4 class="aa-product-title"><a href="#"><?php echo $value1['name']; ?></a></h4>
-                                  <span class="aa-product-price"><?php echo $value1['newprice']; ?></span><span class="aa-product-price"><del><?php echo $value1['oldprice']; ?></del></span>
+                                  <span class="aa-product-price"><?php echo $value1['price']; ?></span>
                                 </figcaption>
                               </figure>                         
                               <div class="aa-product-hvr-content">

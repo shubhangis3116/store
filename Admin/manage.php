@@ -6,7 +6,7 @@
 
 	if(isset($_POST['submit']))
 	{
-		$product=array();
+		$products=array();
 		$proname=$_POST['name'];
 		$proprice=$_POST['price'];
 		$procat=$_POST['dropdown'];
@@ -24,9 +24,9 @@
 				}
 			}
 			
-				$product = array('name'=>$proname,'price'=>$proprice,'dropdown'=>$procat,'image'=>$proimage);
+				$products[] = array('name'=>$proname,'price'=>$proprice,'dropdown'=>$procat,'image'=>$proimage);
 			
-			$product_id = addProduct($product);
+			$product_id = addProduct($products);
 
 			header("location:forms.php");
 
