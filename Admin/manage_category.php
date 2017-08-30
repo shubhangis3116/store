@@ -97,7 +97,7 @@
 													<?php global $catarray; ?>
 													<?php foreach($catarray as $key => $value):?>
 												
-													
+													<!--category shown in table -->
 														<tr>
 															<td><input type="checkbox"></td>
 															<td><?php echo $catarray[$key]['id']; ?> </td>

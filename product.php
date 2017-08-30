@@ -1,49 +1,33 @@
       <?php include('config.php'); ?>
-    <?php include('header.php'); ?>
+      <?php include('functions.php'); ?>
+    
 
       <?php
       /*product module-pagination complete */
                 
-                global $conn,$allproduct;
-                $stmt=$conn->prepare("SELECT COUNT(*) FROM newproductlist");
-                  $stmt->bind_result($num);
-                  $limit=9;
-                  $offset=0;
-                  $stmt->execute();
+                global $conn,$products;
+                
 
-                  while($stmt->fetch())
-                  {
-                    $total=$num;
-                  }
-
-                  
-                  $totalpages=ceil($total/$limit);
-
-                  if(isset($_GET['pageid']))
-                  {
-                    for($i=1;$i<=$totalpages;$i++)
-                    {
-                      if($i==$_GET['pageid'])
-                      {
-                        $offset=($i-1)*$limit;
-                      }
-                    }
-                  }
-         $allproduct=array();
-
-                 $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist LIMIT ?,?");
-                 $stmt->bind_param("ii",$offset,$limit);
-                 $stmt->execute();
-
-                 $stmt->bind_result($name,$price,$image);
-                 while($stmt->fetch())
-                 {
-                  array_push($allproduct,array("name"=>$name, "price"=>$price,"image"=>$image));
-                 }
-
-                 $stmt->close();
-
+             $total=getProductCount();
+             $limit=9;
+             $offset=0;
+             $totalpages=ceil($total/$limit);
+             if(isset($_GET['pageid']))
+             {
+              $pageid = $_GET['pageid'];
+              for($i=1;$i<=$totalpages;$i++)
+              {
+                if($pageid==$i)
+                {
+                  $offset=($i-1) * $limit;
+                }
+              }
+             }
+             
+            $products=getProducts($offset,$limit);
+         
       ?>
+      <?php include('header.php'); ?>
       <!-- menu -->
       <section id="menu">
         <div class="container">
@@ -228,7 +212,7 @@
                 <div class="aa-product-catg-body">
                   <ul class="aa-product-catg">
                     <!-- start single product item -->
-                    <?php foreach($allproduct as $key => $value): ?>
+                    <?php foreach($products as $key => $value): ?>
                     <li>
                       <figure>
                         <a class="aa-product-img" href="#"><img src="img/images/<?php echo $value['image']; ?>" alt="polo shirt img"></a>
