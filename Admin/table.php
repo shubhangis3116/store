@@ -2,8 +2,24 @@
 					<?php include('functions.php'); ?>
 
 				<?php 
-						
-						$products=getProducts();
+				     /*pagination */
+						$total=getProductCount();
+						 $limit=9;
+						 $offset=0;
+						 $totalpages=ceil($total/$limit);
+						 if(isset($_GET['pageid']))
+						 {
+						 	$pageid = $_GET['pageid'];
+							for($i=1;$i<=$totalpages;$i++)
+							{
+								if($pageid==$i)
+								{
+									$offset=($i-1) * $limit;
+								}
+							}
+						 }
+						 
+						$products=getProducts($offset,$limit);
 				?>
 				<?php $page=basename($_SERVER['PHP_SELF']); ?>
 
@@ -128,23 +144,18 @@
 														</div>
 														
 														<div class="pagination">
-														<a href="" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-														
-
-															<?php
-															/*
-															 for($i=1;$i<=$totalpages;$i++)
-															{
-
-
-																echo '<a href="table.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
-
-
-															} */ ?>
-															
+													
+														<?php for($i=1;$i<=$totalpages;$i++):
+														 ?>
+														 <a href="table.php?pageid=<?php echo $i; ?>"
+														 <?php if(isset($pageid) && $pageid==$i) : ?>
+														 	class='number current' title='1'<?php endif ; ?>><?php echo $i; ?></a>
+														 <?php endfor ; ?>
+														</div>
+														</div>
 
 															
-														</div> <!-- End .pagination -->
+														<!-- End .pagination -->
 														<div class="clear"></div>
 													</td>
 												</tr>
@@ -178,7 +189,7 @@
 											
 										</table>
 										
-									</div> <!-- End #tab1 -->
+									 <!-- End #tab1 -->
 									   
 									
 								</div> <!-- End .content-box-content -->
