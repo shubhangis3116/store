@@ -1,16 +1,8 @@
-<?php include('config.php'); 
-$catarray=array();
-$stmt=$conn->prepare("SELECT name FROM newcategory WHERE parentid=?");
-$select=0;
-$stmt->bind_param("i",$select);
-$stmt->bind_result($new);
-        $stmt->execute();
-        while($stmt->fetch())
-        {
-          array_push($catarray,array("name"=>$new));
-        }
 
-        ?>
+<?php include('config.php'); ?>
+
+
+
 <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
             <aside class="aa-sidebar">
               <!-- single sidebar -->
@@ -18,14 +10,16 @@ $stmt->bind_result($new);
                 <h3>Category</h3>
                 <ul class="aa-catg-nav">
                 <form action="filterbycategory.php" method="POST">
-                <?php foreach($catarray as $key => $value): ?>
+                <?php 
+                $category=category();
+                foreach($category as $key => $value): ?>
 
-                  <li><a href=""><?php echo $value['name']; ?></a>
-                  <input type="checkbox" name="catarray[]" value="<?php echo $value['name']?>">
+                 
+                  <input type="checkbox" name="check[]" value="<?php echo $value['name']?>"><?php echo $value['name'] ?>
                   </li>
 
                   <?php endforeach; ?>
-                   <button class="aa-filter-btn" type="submit">Filter</button>
+                   <button class="aa-filter-btn" type="submit" name="submit">Filter</button>
                    </form>
                 </ul>
               </div>

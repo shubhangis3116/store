@@ -1,47 +1,68 @@
-      <?php include('header.php'); ?>
+
       <?php include('config.php'); ?>
+      <?php include('functions.php'); ?>
         <?php
         /*product module-pagination complete */
-                  include('config.php');
-                  global $conn,$stmt,$pageid;
-                   $page=basename($_SERVER['PHP_SELF']);
-                  $cat=$_POST['cat'];
-                  $pageid=$_GET['pageid'];
-                  $stmt=$conn->prepare("SELECT COUNT(id) FROM newproductlist WHERE category=?");
-                    $stmt->bind_param("s",$cat);
-                    $stmt->bind_result($num);
-                    $limit=9;
-                    $offset=0;
-                    $offset=($pageid-1)*$limit;
-                    $stmt->execute();
-
-                    while($stmt->fetch())
+                 
+             $total=getProductCount();
+             $limit=9;
+             $offset=0;
+             $all=array();
+             $totalpages=ceil($total/$limit);
+             if(isset($_GET['pageid']))
+             {
+              $pageid = $_GET['pageid'];
+              for($i=1;$i<=$totalpages;$i++)
+              {
+                if($pageid==$i)
+                {
+                  $offset=($i-1) * $limit;
+                }
+              }
+             }
+            
+              if(isset($_POST['submit']))
+              
+                  if(isset($_POST['check']))
+                  {
+                    $total=getCategoryCount($_POST['check']);
+                    $totalpages=ceil($total/$limit);
+                    $pro=allcategory($_POST['check'],$offset,$limit);
+                  }
+                  else if(isset($_GET['name']))
+                  {
+                    $contain=$_GET['name'];
+                    $getc=$contain;
+                    $new2=getCategoryCount($contain);
+                    $totalpages=ceil($total/$limit);
+                    for($i=1;$i<=$totalpages;$i++)
                     {
-                      $total=$num;
+                      if($pageid==$i)
+                      {
+                        $offset=($i-1)*$limit;
+                      }
                     }
-                      $totalpages=ceil($total/$limit);
-                    
-                    
-           $display=array();
-                   if(isset($_POST["cat"])):
-                    foreach ($_POST['cat'] as $value):
-                   $stmt=$conn->prepare("SELECT name,price,image FROM newproductlist WHERE category=?");
-                   $stmt->bind_param("s", $value);
-                   $stmt->bind_result($name,$price,$image);
-                   $stmt->execute();
-                   while($stmt->fetch())
-                   {
-                    array_push($display,array("name"=>$name,"price"=>$price,"image"=>$image));
-                   }
+                    $pro=allcategory($contain,$limit,$offset);
+                    $totalpages=ceil($total/$limit);
+                    $getc=$contain();
 
-                   $stmt->close();
-                    endforeach;
-                    endif;
-
+                  }
                    
+                  
+                    //$all=$_POST['check'];
+
+                    //$pro=allcategory();
+                    
+                    
+                 // }
+               // }
+                
+                
+              $cat=getCategory();
 
         ?>
         <!-- menu -->
+        <?php include('header.php'); ?>
         <section id="menu">
           <div class="container">
             <div class="menu-area">
@@ -225,7 +246,10 @@
                   <div class="aa-product-catg-body">
                     <ul class="aa-product-catg">
                       <!-- start single product item -->
-                      <?php foreach($display as $key => $value): ?>
+                     <?php $pro=array(); ?>
+                      <?php foreach($pro as $value): 
+                     
+                      ?>
                       <li>
                         <figure>
                           <a class="aa-product-img" href="#"><img src="img/images/<?php echo $value['image']; ?>" alt="polo shirt img"></a>
@@ -337,18 +361,30 @@
                           <a href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                           </a>
-                         <?php for($i=1;$i<=$totalpages;$i++):
-                          if($pageid==$i)
-                                      {
+                           <?php
+                                $cat_str="";
+                                //if(isset($check))
+                                if(isset($_POST['check']))
+                                {
+                                  foreach($_POST['check'] as $value)
+                                  {
+                                    $cat_str.="&getc[]=".$value;
+                                  }
+                                }
+                                elseif (isset($getc)) 
+                                {
+                                  $cat_str="";
+                                  foreach($getc as $value)
+                                  {
+                                    $cat_str.="&getc[]=".$value;
+                                  }
+                                }
+                                ?>
+                         <?php for($i=1;$i<=$totalpages;$i++): ?>
 
-
-                                        echo '<a href="filterbycategory.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
-
-
-                                      } 
-                                      endfor;
                                       
-                                      ?>
+                            <a href="filterbycategory.php?pageid=<?php echo $i; ?><?php echo $cat_str;?>"><?php echo $i ; ?></a>
+                         <?php endfor; ?>
                      
                           <a href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
@@ -359,7 +395,133 @@
                   </div>
                 </div>
               </div>
-             <?php include('sidebar.php'); ?>
+             <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
+            <aside class="aa-sidebar">
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Category</h3>
+                <ul class="aa-catg-nav">
+                <form action="filterbycategory.php" method="POST">
+                <?php 
+               
+                foreach($cat as $key => $value): ?>
+
+                 
+                  <input type="checkbox" name="check[]" value="<?php echo $value['name']?>"><?php echo $value['name'] ?>
+                  </li>
+
+                  <?php endforeach; ?>
+                   <button class="aa-filter-btn" type="submit" name="submit">Filter</button>
+                   </form>
+                </ul>
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Tags</h3>
+                <div class="tag-cloud">
+                  <a href="#">Fashion</a>
+                  <a href="#">Ecommerce</a>
+                  <a href="#">Shop</a>
+                  <a href="#">Hand Bag</a>
+                  <a href="#">Laptop</a>
+                  <a href="#">Head Phone</a>
+                  <a href="#">Pen Drive</a>
+                </div>
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Shop By Price</h3>              
+                <!-- price range -->
+                <div class="aa-sidebar-price-range">
+                 <form action="">
+                    <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                    </div>
+                    <span id="skip-value-lower" class="example-val">30.00</span>
+                   <span id="skip-value-upper" class="example-val">100.00</span>
+                   <button class="aa-filter-btn" type="submit">Filter</button>
+                 </form>
+                </div>              
+
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Shop By Color</h3>
+                <div class="aa-color-tag">
+                  <a class="aa-color-green" href="#"></a>
+                  <a class="aa-color-yellow" href="#"></a>
+                  <a class="aa-color-pink" href="#"></a>
+                  <a class="aa-color-purple" href="#"></a>
+                  <a class="aa-color-blue" href="#"></a>
+                  <a class="aa-color-orange" href="#"></a>
+                  <a class="aa-color-gray" href="#"></a>
+                  <a class="aa-color-black" href="#"></a>
+                  <a class="aa-color-white" href="#"></a>
+                  <a class="aa-color-cyan" href="#"></a>
+                  <a class="aa-color-olive" href="#"></a>
+                  <a class="aa-color-orchid" href="#"></a>
+                </div>                            
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Recently Views</h3>
+                <div class="aa-recently-views">
+                  <ul>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                     <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>                                      
+                  </ul>
+                </div>                            
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Top Rated Products</h3>
+                <div class="aa-recently-views">
+                  <ul>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                     <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>                                      
+                  </ul>
+                </div>                            
+              </div>
+            </aside>
+          </div>
+         
              
             </div>
           </div>

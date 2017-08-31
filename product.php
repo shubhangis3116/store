@@ -9,10 +9,13 @@
                 
 
              $total=getProductCount();
+             $catarray=array();
+             $pro=array();
              $limit=9;
              $offset=0;
+             $all=array();
              $totalpages=ceil($total/$limit);
-             if(isset($_GET['pageid']))
+            if(isset($_GET['pageid']))
              {
               $pageid = $_GET['pageid'];
               for($i=1;$i<=$totalpages;$i++)
@@ -23,6 +26,23 @@
                 }
               }
              }
+
+             $products = getProducts($offset,$limit); 
+             
+              if(isset($_POST['submit']))
+              {
+                if(isset($_POST['check']))
+                {
+                  $all=$_POST['check'];
+                  $catarray=allcategory($_POST['check']);
+                  
+                }
+              }
+
+ 
+                
+              getCategory();
+
              
             $products=getProducts($offset,$limit);
          
@@ -212,7 +232,9 @@
                 <div class="aa-product-catg-body">
                   <ul class="aa-product-catg">
                     <!-- start single product item -->
-                    <?php foreach($products as $key => $value): ?>
+                    <?php foreach($products as $key => $value): 
+
+                    ?>
                     <li>
                       <figure>
                         <a class="aa-product-img" href="#"><img src="img/images/<?php echo $value['image']; ?>" alt="polo shirt img"></a>
@@ -325,16 +347,12 @@
                           <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
-                    <?php for($i=1;$i<=$totalpages;$i++)
-                                      {
-
-
-                                        echo '<a href="product.php?pageid='.$i.'" class="number" title="1"> '.$i.' </a>';
-
-
-                                      } 
+                    <?php for($i=1;$i<=$totalpages;$i++): ?>
+                       <a href="product.php?pageid=<?php echo $i; ?>"
+                     <?php if(isset($pageid) && $pageid==$i) : ?>
+                      class='number current' title='1'<?php endif ; ?>><?php echo $i; ?></a>
+                     <?php endfor ; ?>
                                       
-                                      ?>
                         <a href="#" aria-label="Next">
                           <span aria-hidden="true">&raquo;</span>
                         </a>
@@ -344,7 +362,134 @@
                 </div>
               </div>
             </div>
-            <?php include('sidebar.php'); ?>
+          <div class="col-lg-3 col-md-3 col-sm-4 col-md-pull-9">
+            <aside class="aa-sidebar">
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Category</h3>
+                <ul class="aa-catg-nav">
+                <form action="filterbycategory.php" method="POST">
+                <?php 
+                $cat=getCategory();
+              
+                foreach($cat as $key => $value): ?>
+
+                 
+                  <input type="checkbox" name="check[]" value="<?php echo $value['name']?>"><?php echo $value['name'] ?>
+                  </li>
+
+                  <?php endforeach; ?>
+                   <button class="aa-filter-btn" type="submit" name="submit">Filter</button>
+                   </form>
+                </ul>
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Tags</h3>
+                <div class="tag-cloud">
+                  <a href="#">Fashion</a>
+                  <a href="#">Ecommerce</a>
+                  <a href="#">Shop</a>
+                  <a href="#">Hand Bag</a>
+                  <a href="#">Laptop</a>
+                  <a href="#">Head Phone</a>
+                  <a href="#">Pen Drive</a>
+                </div>
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Shop By Price</h3>              
+                <!-- price range -->
+                <div class="aa-sidebar-price-range">
+                 <form action="">
+                    <div id="skipstep" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                    </div>
+                    <span id="skip-value-lower" class="example-val">30.00</span>
+                   <span id="skip-value-upper" class="example-val">100.00</span>
+                   <button class="aa-filter-btn" type="submit">Filter</button>
+                 </form>
+                </div>              
+
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Shop By Color</h3>
+                <div class="aa-color-tag">
+                  <a class="aa-color-green" href="#"></a>
+                  <a class="aa-color-yellow" href="#"></a>
+                  <a class="aa-color-pink" href="#"></a>
+                  <a class="aa-color-purple" href="#"></a>
+                  <a class="aa-color-blue" href="#"></a>
+                  <a class="aa-color-orange" href="#"></a>
+                  <a class="aa-color-gray" href="#"></a>
+                  <a class="aa-color-black" href="#"></a>
+                  <a class="aa-color-white" href="#"></a>
+                  <a class="aa-color-cyan" href="#"></a>
+                  <a class="aa-color-olive" href="#"></a>
+                  <a class="aa-color-orchid" href="#"></a>
+                </div>                            
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Recently Views</h3>
+                <div class="aa-recently-views">
+                  <ul>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                     <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>                                      
+                  </ul>
+                </div>                            
+              </div>
+              <!-- single sidebar -->
+              <div class="aa-sidebar-widget">
+                <h3>Top Rated Products</h3>
+                <div class="aa-recently-views">
+                  <ul>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                    <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-1.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>
+                     <li>
+                      <a href="#" class="aa-cartbox-img"><img alt="img" src="img/woman-small-2.jpg"></a>
+                      <div class="aa-cartbox-info">
+                        <h4><a href="#">Product Name</a></h4>
+                        <p>1 x $250</p>
+                      </div>                    
+                    </li>                                      
+                  </ul>
+                </div>                            
+              </div>
+            </aside>
+          </div>
+         
            
           </div>
         </div>
