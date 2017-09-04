@@ -72,16 +72,17 @@ function getCategoryCount($all=array())
 {
 global $conn;
 $query1=array();
-$sqlc="SELECT COUNT(*) FROM category";
+$sqlc="SELECT COUNT(*) FROM newproductlist ";
 $sql2="WHERE name IN(";
 foreach($all as $value)
 {
-	$query1[]="'value'";
+	$query1[]="'".$value."'";
 }
 $query2=implode(',',$query1);
 $sql2.=$query2.")";
 $sqlc.=$sql2;
-$stml=$conn->prepare($sqlc);
+
+$stmt=$conn->prepare($sqlc);
 $stmt->bind_result($new1);
 $execute=$stmt->execute();
 if(false===$execute)
@@ -100,15 +101,16 @@ function allcategory($all=array(),$offset,$limit)
 	{
 		global  $conn;
 		$query1=array();
-		$sql="SELECT * FROM category";
+		$sql="SELECT * FROM newproductlist ";
 		$sql2="WHERE name IN(";
 		foreach($all as $value)
 		{
 			$query1[]="$value";
 		}
-		$query2[]=implode(',',$query1);
+		$query2=implode(',',$query1);
 		$sql2.=$query2.") LIMIT ?,?";
 		$sql.=$sql2;
+		//echo $sql;die;
 		$stmt=$conn->prepare($sql);
 		if(false===$stmt)
 		{
@@ -133,7 +135,44 @@ function allcategory($all=array(),$offset,$limit)
 		}
 	
 	return $pro;
-	print_r($pro);
+	//print_r($pro);die;
 
 	
+}
+function register($uname,$pass)
+{
+	global $conn;
+	$stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+	$stmt -> bind_param("ss", $username, $password);
+	$username=$uname;
+	$password=$pass;
+	$stmt -> execute();
+	
+	return true;
+
+}
+function login($uname,$pass)
+{
+	global $conn;
+	$stmt=$conn->prepare("SELECT username, password FROM users");
+	$stmt->bind_result($username, $password);
+	$stmt->execute();
+	while($stmt->fetch())
+	{
+		if($uname==$username)
+			{
+				if($pass==$password)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			else
+			{
+				return true;
+			}
+	}
 }

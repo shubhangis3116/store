@@ -3,7 +3,8 @@
       <?php include('functions.php'); ?>
         <?php
         /*product module-pagination complete */
-                 
+         
+          {       
              $total=getProductCount();
              $limit=9;
              $offset=0;
@@ -20,14 +21,17 @@
                 }
               }
              }
+           }
             
-              if(isset($_POST['submit']))
+              //if(isset($_POST['submit']))
               
                   if(isset($_POST['check']))
                   {
-                    $total=getCategoryCount($_POST['check']);
+                    $new2=getCategoryCount($_POST['check']);
                     $totalpages=ceil($total/$limit);
+                    //print_r($_POST['check']);die;
                     $pro=allcategory($_POST['check'],$offset,$limit);
+                    //print_r($pro);die;
                   }
                   else if(isset($_GET['name']))
                   {
@@ -43,6 +47,7 @@
                       }
                     }
                     $pro=allcategory($contain,$limit,$offset);
+                    //print_r($pro);die;
                     $totalpages=ceil($total/$limit);
                     $getc=$contain();
 
@@ -51,7 +56,7 @@
                   
                     //$all=$_POST['check'];
 
-                    //$pro=allcategory();
+                   
                     
                     
                  // }
@@ -246,8 +251,8 @@
                   <div class="aa-product-catg-body">
                     <ul class="aa-product-catg">
                       <!-- start single product item -->
-                     <?php $pro=array(); ?>
-                      <?php foreach($pro as $value): 
+                     
+                      <?php if(isset($pro)) foreach($pro as $value): 
                      
                       ?>
                       <li>
@@ -269,6 +274,7 @@
                         <span class="aa-badge aa-sale" href="#">SALE!</span>
                       </li>
                     <?php endforeach; ?>
+          
                       <!-- start single product item -->
                       
                     <!-- quick view modal -->                  

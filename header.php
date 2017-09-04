@@ -102,12 +102,21 @@
                 <!-- / header top left -->
                 <div class="aa-header-top-right">
                   <ul class="aa-head-top-nav-right">
-                    <li><a href="account.html">My Account</a></li>
-                    <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                    <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                    <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-                    <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                     <li class="hidden-xs"><a href="category.php">Add Category</a></li>
+                    <li><a href="account.php">My Account</a></li>
+                    <li class="hidden-xs"><a href="wishlist.php">Wishlist</a></li>
+                    <?php if(isset($_SESSION["usern"])):?>
+                    <li class="hidden-xs"><a href=""><?php echo $_SESSION["usern"]?></a></li>
+                    <?php endif;?>
+                    <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
+                    <li class="hidden-xs"><a href="checkout.php">Checkout</a></li>
+                     <?php if(!isset($_SESSION["usern"])):?>
+                     <li><a href="account.php" >Login</a></li>
+                    <?php endif;?>
+                    <?php if(isset($_SESSION["usern"])):?>
+                  <li><a href="logout.php">Logout</a></li>
+                <?php endif;?>
+                
+                    
                   </ul>
                 </div>
               </div>
@@ -168,7 +177,7 @@
                         </span>
                       </li>
                     </ul>
-                    <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                    <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a>
                   </div>
                 </div>
                 <!-- / cart box -->
