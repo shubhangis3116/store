@@ -148,33 +148,38 @@
                   <a class="aa-cart-link" href="#">
                     <span class="fa fa-shopping-basket"></span>
                     <span class="aa-cart-title">SHOPPING CART</span>
-                    <span class="aa-cart-notify">2</span>
+                    <span class="aa-cart-notify">
+                    <?php if(isset($_SESSION['cart']))
+                  { 
+                    echo count($_SESSION['cart']) ;
+                  }
+                    else
+                    { 
+                      echo 0 ; 
+                     }
+                      ?></span>
                   </a>
                   <div class="aa-cartbox-summary">
                     <ul>
+                     <?php if(isset($_SESSION['cart']))
+                  foreach($_SESSION['cart'] as $key => $value) : ?>
                       <li>
-                        <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
+                        <a class="aa-cartbox-img" href="#"><img src="img/images/<?php echo $value['image'] ?>" alt="img"></a>
                         <div class="aa-cartbox-info">
-                          <h4><a href="#">Product Name</a></h4>
-                          <p>1 x $250</p>
+                          <h4><a href="#"><?php echo $value['name']; ?></a></h4>
+                          <p><?php echo $value['quantity']; ?> x $ <?php echo $value['price']; ?></p>
                         </div>
                         <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
                       </li>
-                      <li>
-                        <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                        <div class="aa-cartbox-info">
-                          <h4><a href="#">Product Name</a></h4>
-                          <p>1 x $250</p>
-                        </div>
-                        <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                      </li>                    
+                      <?php endforeach ; ?>    
+                     
                       <li>
                         <span class="aa-cartbox-total-title">
                           Total
                         </span>
-                        <span class="aa-cartbox-total-price">
-                          $500
-                        </span>
+                         <?php// if(isset($_SESSION['totalp']))
+                          //echo $_SESSION['totalp'];
+                      ?>
                       </li>
                     </ul>
                     <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.php">Checkout</a>

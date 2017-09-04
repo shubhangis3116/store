@@ -176,3 +176,49 @@ function login($uname,$pass)
 			}
 	}
 }
+function getProductById($idd)
+{
+	global $conn;
+	$item=array();
+	$stmt=$conn->prepare("SELECT id,name,price,image,category FROM newproductlist WHERE id=?");
+	if(false===$stmt)
+	{
+		return false;
+	}
+	$param=$stmt->bind_param("i",$idd);
+	if(false===$param)
+	{
+		return false;
+	}
+	$stmt->bind_result($idp,$namep,$pricep,$imagep,$categoryp);
+	$execute=$stmt->execute();
+	if(false===$execute)
+	{
+		return false;
+	}
+	while($stmt->fetch())
+	{
+		$item[]=array("id"=>$idp,"name"=>$namep,"price"=>$pricep,"image"=>$imagep,"category"=>$categoryp);
+
+	}
+	//$_SESSION['totalp']+=$items[0]["price"];
+	return $item;
+	
+
+}
+function productExists($idd)
+{
+	if(isset($_SESSION['cart']))
+	{
+		$cart=$_SESSION['cart'];
+
+		foreach ($cart as $key => $value)
+		{
+			if($value['id']==$idd)
+			{
+				return true;
+			}	
+		}
+		return false;
+	}
+}

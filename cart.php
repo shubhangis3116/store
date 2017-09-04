@@ -1,4 +1,8 @@
+<?php session_start(); ?>
+<?php include('functions.php');?>
+
 <?php include('header.php'); ?>
+<?php $ppage= basename($_SERVER['PHP_SELF']); ?>
   <!-- menu -->
   <section id="menu">
     <div class="container">
@@ -156,13 +160,14 @@
        <div class="col-md-12">
          <div class="cart-view-area">
            <div class="cart-view-table">
-             <form action="">
+             <form action="addtocart.php?pagenum=<?php echo $ppage ; ?>" method="POST">
                <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
+                        
+                        <th>Action</th>
+                        <th>Image</th>
                         <th>Product</th>
                         <th>Price</th>
                         <th>Quantity</th>
@@ -170,30 +175,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach($_SESSION['cart'] as $key => $value) : ?>
                       <tr>
                         <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$250</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$250</td>
+                        <td><a href="#"><img src="img/images/<?php echo $value['image']; ?>" alt="img"></a></td>
+                        <td><a class="aa-cart-title" href="#"><?php echo $value['name']; ?></a></td>
+                        <td><?php $value['price']; ?></td>
+                   <td><input class="aa-cart-quantity" type="number" value="<?php echo $value['quantity'] ?>"></td>
+                   <td><?php echo $value['quantity']  *  $value['price'] ?> </td>
+                       
                       </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-2.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$150</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$150</td>
-                      </tr>
-                      <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
-                        <td><a href="#"><img src="img/man/polo-shirt-3.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
-                        <td>$50</td>
-                        <td><input class="aa-cart-quantity" type="number" value="1"></td>
-                        <td>$50</td>
-                      </tr>
+
+
+
+                       <?php endforeach ; ?>
+
                       <tr>
                         <td colspan="6" class="aa-cart-view-bottom">
                           <div class="aa-cart-coupon">
@@ -212,17 +208,17 @@
                <h4>Cart Totals</h4>
                <table class="aa-totals-table">
                  <tbody>
-                   <tr>
-                     <th>Subtotal</th>
-                     <td>$450</td>
-                   </tr>
-                   <tr>
-                     <th>Total</th>
-                     <td>$450</td>
+                  <tr>
+                     <th>Total Price </th>
+                   <td>
+                    <?php//if(isset($_SESSION['totalp']))
+                    // echo $_SESSION['totalp'];
+                      ?>
+                     </td>
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
+               <a href="#" class="aa-cart-view-btn">Proceed to Checkout</a>
              </div>
            </div>
          </div>
@@ -253,97 +249,8 @@
   <!-- / Subscribe section -->
 
   <!-- footer -->  
-  <footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-     <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-top-area">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <h3>Main Menu</h3>
-                  <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Knowledge Base</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
-                      <li><a href="#">Returns</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Discount</a></li>
-                      <li><a href="#">Special Offer</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Search</a></li>
-                      <li><a href="#">Advanced Search</a></li>
-                      <li><a href="#">Suppliers</a></li>
-                      <li><a href="#">FAQ</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contact Us</h3>
-                    <address>
-                      <p> 25 Astor Pl, NY 10003, USA</p>
-                      <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                      <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
-                    </address>
-                    <div class="aa-footer-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                      <a href="#"><span class="fa fa-youtube"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-    <!-- footer-bottom -->
-    <div class="aa-footer-bottom">
-      <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-bottom-area">
-            <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
-            <div class="aa-footer-payment">
-              <span class="fa fa-cc-mastercard"></span>
-              <span class="fa fa-cc-visa"></span>
-              <span class="fa fa-paypal"></span>
-              <span class="fa fa-cc-discover"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </footer>
+ <?php include('footer.php'); ?>
+
   <!-- / footer -->
   <!-- Login Modal -->  
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
