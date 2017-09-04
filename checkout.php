@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php include("functions.php"); ?>
 <?php
+//checkout module
 if(isset($_SESSION['usern']))
 {
   if(isset($_SESSION['cart']))
@@ -443,7 +444,7 @@ if(!isset($_SESSION['usern']))
                        <?php foreach($_SESSION['cart'] as $key => $value): ?>
                         <tr>
                           <td><?php echo $value['name'] ?> <strong> x  <?php echo $value['quantity'] ?></strong></td>
-                          <td><?php echo $value['quantity']  *  $value['price'] ?></td>
+                          <td><?php echo /*$value['quantity']  * */ $value['price'] ?></td>
                         </tr>
                           <?php endforeach ; ?>
                         
