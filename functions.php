@@ -201,7 +201,7 @@ function getProductById($idd)
 		$item[]=array("id"=>$idp,"name"=>$namep,"price"=>$pricep,"image"=>$imagep,"category"=>$categoryp);
 
 	}
-	$_SESSION['totalp']+=$items[0]["price"];
+	//$_SESSION['totalp']+=$item[0]["price"];
 	return $item;
 	
 
@@ -221,4 +221,50 @@ function productExists($idd)
 		}
 		return false;
 	}
+}
+function updateProduct($idd)
+{
+	$cart=$_SESSION['cart'];
+
+	foreach ($cart as $key => $value) 
+	{
+		if($value['id']==$idd)
+		{
+			$cart[$key]['quantity'] +=1;
+			break;
+		}
+	}
+	return $cart;
+}
+function orders($data=array())
+{
+	global $conn;
+
+	$usern=$_SESSION['usern'];
+	//$totalp=$_SESSION['totalp'];
+	$time=date('Y/m/d H:i:s');
+
+	$stmt=$conn->prepare("INSERT INTO order (username,ordertime,data,price) VALUES (?,?,?,?)");
+	if(false===$stmt)
+	{
+		//echo "string";die;
+		return false;
+	}
+	$param=$stmt->bind_param("ssss",$usernm,$date,$dataa,$pricee);
+	$usernm=$usern;
+	$pricee=$totalp;
+	$date=$time;
+	$dataa=$data;
+	//echo "string";die;
+	//echo $user1;die;
+	if(false===$param)
+	{
+		return false;
+	}
+	$execute=$stmt->execute();
+	if(false===$execute)
+	{
+		return false;
+	}
+	return ;
 }

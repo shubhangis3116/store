@@ -1,3 +1,21 @@
+<?php session_start(); ?>
+<?php include("functions.php"); ?>
+<?php
+if(isset($_SESSION['usern']))
+{
+  if(isset($_SESSION['cart']))
+  {
+    //echo "string";
+    $data=json_encode($_SESSION['cart']);
+    orders($data);
+  }
+} 
+if(!isset($_SESSION['usern']))
+{
+  header("Location:account.php");
+}
+
+?>
 
   <!-- / header section -->
   <?php include('header.php'); ?>
@@ -422,31 +440,24 @@
                         </tr>
                       </thead>
                       <tbody>
+                       <?php foreach($_SESSION['cart'] as $key => $value): ?>
                         <tr>
-                          <td>T-Shirt <strong> x  1</strong></td>
-                          <td>$150</td>
+                          <td><?php echo $value['name'] ?> <strong> x  <?php echo $value['quantity'] ?></strong></td>
+                          <td><?php echo $value['quantity']  *  $value['price'] ?></td>
                         </tr>
-                        <tr>
-                          <td>Polo T-Shirt <strong> x  1</strong></td>
-                          <td>$250</td>
-                        </tr>
-                        <tr>
-                          <td>Shoes <strong> x  1</strong></td>
-                          <td>$350</td>
-                        </tr>
+                          <?php endforeach ; ?>
+                        
                       </tbody>
                       <tfoot>
-                        <tr>
-                          <th>Subtotal</th>
-                          <td>$750</td>
-                        </tr>
                          <tr>
                           <th>Tax</th>
                           <td>$35</td>
                         </tr>
                          <tr>
                           <th>Total</th>
-                          <td>$785</td>
+                          <td> <?php if(isset($_SESSION['totalp']))
+                              echo (35+$_SESSION['totalp']);
+                               ?></td>
                         </tr>
                       </tfoot>
                     </table>

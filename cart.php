@@ -182,7 +182,7 @@
                         <td><a class="aa-cart-title" href="#"><?php echo $value['name']; ?></a></td>
                         <td><?php echo $value['price']; ?></td>
                    <td><input class="aa-cart-quantity" type="number" value="<?php echo $value['quantity'] ?>"></td>
-                   <td><?php echo $value['quantity']  *  $value['price'] ?> </td>
+                   <td><?php echo $value['price'] ?> </td>
                        
                       </tr>
 

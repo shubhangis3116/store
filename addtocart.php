@@ -15,13 +15,13 @@ if(isset($_GET['id']))
 	{
 		if($value['id']==$id)
 		{
-			//if(productExists($id))
-			//{
-			//$cart = product_update($id);
-			//	$_SESSION['cart']=$cart;
-			//}
-			//else
-			//{
+			if(productExists($id))
+			{
+			$cart = updateProduct($id);
+				$_SESSION['cart']=$cart;
+			}
+			else
+			{
 				if(isset($_SESSION['cart']))
 				{
 					$cart=$_SESSION['cart'];
@@ -32,8 +32,9 @@ if(isset($_GET['id']))
 			}
 		}	
 	}
+}
 //print_r($_SESSION['cart']);die;
-
+//addtocart module-delete working
 if(isset($_GET['delid']))
 {
 	$delid=$_GET['delid'];
