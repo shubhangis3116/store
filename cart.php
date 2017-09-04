@@ -177,10 +177,10 @@
                     <tbody>
                       <?php foreach($_SESSION['cart'] as $key => $value) : ?>
                       <tr>
-                        <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
+                        <td><a class="remove" href="addtocart.php?delid=<?php echo $value['id']; ?>&pagenum=<?php echo $ppage ; ?>"><fa class="fa fa-close"></fa></a></td>
                         <td><a href="#"><img src="img/images/<?php echo $value['image']; ?>" alt="img"></a></td>
                         <td><a class="aa-cart-title" href="#"><?php echo $value['name']; ?></a></td>
-                        <td><?php $value['price']; ?></td>
+                        <td><?php echo $value['price']; ?></td>
                    <td><input class="aa-cart-quantity" type="number" value="<?php echo $value['quantity'] ?>"></td>
                    <td><?php echo $value['quantity']  *  $value['price'] ?> </td>
                        
@@ -211,8 +211,8 @@
                   <tr>
                      <th>Total Price </th>
                    <td>
-                    <?php//if(isset($_SESSION['totalp']))
-                    // echo $_SESSION['totalp'];
+                    <?php if(isset($_SESSION['totalp']))
+                    echo $_SESSION['totalp'];
                       ?>
                      </td>
                    </tr>

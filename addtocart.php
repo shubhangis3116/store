@@ -2,7 +2,7 @@
 session_start();
 include("config.php");
 include("functions.php");
-
+//addtocart module
 $cart = array();
 
 if(isset($_GET['id']))
@@ -33,6 +33,24 @@ if(isset($_GET['id']))
 		}	
 	}
 //print_r($_SESSION['cart']);die;
+
+if(isset($_GET['delid']))
+{
+	$delid=$_GET['delid'];
+	$cart=$_SESSION['cart'];
+
+	foreach ($cart as $key => $value) 
+	{
+		if($value['id']==$delid)
+		{
+			unset($cart[$key]);
+
+			$cart = array_values($cart);
+			
+			$_SESSION['cart'] = $cart;
+		}
+	}
+}
 
 header("Location:product.php");
 

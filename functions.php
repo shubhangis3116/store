@@ -201,7 +201,7 @@ function getProductById($idd)
 		$item[]=array("id"=>$idp,"name"=>$namep,"price"=>$pricep,"image"=>$imagep,"category"=>$categoryp);
 
 	}
-	//$_SESSION['totalp']+=$items[0]["price"];
+	$_SESSION['totalp']+=$items[0]["price"];
 	return $item;
 	
 
